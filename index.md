@@ -12,8 +12,6 @@ The lecture and seminar plan contain information about the timing, topics, cours
 
 This is an applied course in the disciplines of economics ...
 
-Kurset består av ulike interessante tema  
-
 
 ## Instructors
 - [Dejene G.,Kidane](https://uit.no/ansatte/dejene.g.kidane){:target="blank"} (fagansvarlig)
