@@ -1,17 +1,12 @@
 {% include navbar.html %}  {% include top-box.html %}
 
-
-## [Slik lager du et kursrepositorie](readme_no.html){:target="blank"} (Slettes)
-
-
 ## Course Plan 
 
 The lecture and seminar plan contain information about the timing, topics, course instructor, as well as resources/tasks for each topic.
 
-[Timeplan](https://timeplan.uit.no/){:target="blank"} på timeplan.uit.no
-
 - [Forelesningsplan](forelesningsplan.html){:target="blank"}
 
+[Timeplan](https://https://timeplan.uit.no/emne_timeplan.php?sem=25v&module[]=SOK-3021-1#week-50){:target="blank"} på timeplan.uit.no
 
 ## Course Description
 
