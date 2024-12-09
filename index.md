@@ -21,8 +21,8 @@ Kurset består av ulike interessante tema
 
 
 ## Instructors
-- [Dejene G.,Kidane](https://uit.no/ansatte/derek.clark){:target="blank"} (fagansvarlig)
-- [Øystein Myrland](https://uit.no/ansatte/person?p_document_id=41418){:target="blank"}
+- [Dejene G.,Kidane](https://uit.no/ansatte/dejene.g.kidane){:target="blank"} (fagansvarlig)
+- [Øystein Myrland](https://uit.no/ansatte/oystein.myrland){:target="blank"}
 
 
 ## Curriculum
