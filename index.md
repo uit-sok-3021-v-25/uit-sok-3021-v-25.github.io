@@ -4,53 +4,39 @@
 ## [Slik lager du et kursrepositorie](readme_no.html){:target="blank"} (Slettes)
 
 
-## Kursplan  
+## Course Plan 
 
-Forelesnings- og seminarplanene inneholder informasjon om tidspunkt, tema, faglærer samt ressurser/oppgaver til hvert tema.  
-Innleveringsplanen gir oppgaver, frister og ressurser i forbindelse med obligatoriske innleveringer.  
-
-- [Forelesningsplan](forelesningsplan.html){:target="blank"}
-- [Seminarplan](seminarplan.html){:target="blank"}
-- [Innleveringsplan](innleveringer.html){:target="blank"}   
-
+The lecture and seminar plan contain information about the timing, topics, course instructor, as well as resources/tasks for each topic.
 
 [Timeplan](https://timeplan.uit.no/){:target="blank"} på timeplan.uit.no
 
+- [Forelesningsplan](forelesningsplan.html){:target="blank"}
 
-## Kursbeskrivelse 
 
+## Course Description
+
+This is an applied course in the disciplines of economics ...
 
 Kurset består av ulike interessante tema  
 
 
-## Faglærerinfo  
+## Instructors
 - [Dejene G.,Kidane](https://uit.no/ansatte/derek.clark){:target="blank"} (fagansvarlig)
 - [Øystein Myrland](https://uit.no/ansatte/person?p_document_id=41418){:target="blank"}
 
 
+## Curriculum
 
-## Administrative spørsmål
+## Announcements
 
-For henvendelser av administrative art send e-post til: <hhcampus@hjelp.uit.no>. Der får du hjelp av Handelshøgskolens administrasjon.
+Announcements and messages are posted in Canvas.
 
+## Examination  
 
-## Pensum  
+## Administrative Questions
 
-### Pensum til forelesningene
-
-[Leganto](https://bibsys-c.alma.exlibrisgroup.com/leganto/){:target="blank"}  
-
-
+For administrative inquiries, please send an email to: hhcampus@hjelp.uit.no. There, you will receive help from the School of Business Administration.
 
 
-## Kunngjøringer  
 
-Kunngjøringer og beskjeder legges ut i [Canvas](https://uit.instructure.com/){:target="blank"}.
-
-
-## Innlevering og eksamen  
-
-Kurset har mappeevaluering. Alle oppgaver er obligatorisk; noen er _arbeidskrav_ (uten karakter), mens andre er karaktergivende.  
-
-Frister, oppgaver og ressurser finnes i [innleveringsplan](innleveringer.html){:target="blank"}.    
 
