@@ -12,6 +12,7 @@ The lecture and seminar plan contain information about the timing, topics, cours
 
 This is an applied course in the disciplines of economics ...
 
+See the course description [here](https://uit.no/utdanning/emner/emne/859434/sok-3021)
 
 ## Instructors
 - [Dejene G.,Kidane](https://uit.no/ansatte/dejene.g.kidane){:target="blank"} (fagansvarlig)
