@@ -21,11 +21,19 @@ See full description [here](https://uit.no/utdanning/emner/emne/859434/sok-3021)
 
 ## Curriculum
 
+Textbook: [Principles of Econometrics](https://principlesofeconometrics.com/poe5/poe5.html) 5th Edition (POE5), Wiley - 2018. Available at the campus bookstore Akademika.
+
+By R. Carter Hill, William E. Griffiths and Guay C. Lim. POE5 is an introductory book for students in economics and finance, as well as students in accounting, agricultural economics, marketing, public policy, sociology, law and political science. It assumes that students have a formal background with courses in the principles of economics/microeconomics, and elementary mathematics and statistics.
+
+Curriculum: Chapters 09, 12, 13 and 14.
+
 ## Announcements
 
 Announcements and messages are posted in Canvas.
 
-## Examination  
+## Home Assignments, obligatory or not?
+You have an assignment portfolio. We will post a lot of small assignments, and some larger ones, in Canvas. Doing these earns various amounts of points to your portfolio. There will be a total of 100 points during the semester. You need 70 points to pass, and be eligible for the final exam.
+
 
 ## Administrative Questions
 
