@@ -12,7 +12,7 @@ The lecture and seminar plan contain information about the timing, topics, cours
 
 This course provides a basic introduction to time series analysis. The focus is on providing students with the tools necessary to analyze, model, and forecast economic and financial data that evolves over time. Emphasis will be placed on both univariate and multivariate time series models, as well as practical applications using the R software environment for statistical computing and graphics. By the end of the course, students should have a clear understanding of the basic techniques and models of time series analysis and be able to apply them to a variety of time series data.
 
-See the course description [here](https://uit.no/utdanning/emner/emne/859434/sok-3021)
+See full description [here](https://uit.no/utdanning/emner/emne/859434/sok-3021)
 
 ## Instructors
 - [Dejene G.,Kidane](https://uit.no/ansatte/dejene.g.kidane){:target="blank"} (fagansvarlig)
