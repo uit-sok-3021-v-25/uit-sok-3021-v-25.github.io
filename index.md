@@ -10,7 +10,7 @@ The lecture and seminar plan contain information about the timing, topics, cours
 
 ## Course Description
 
-This course provides a basic introduction to time series analysis. The focus is on providing students with the tools necessary to analyze, model, and forecast economic and financial data that evolves over time. Emphasis will be placed on both univariate and multivariate time series models, as well as practical applications using the R software environment for statistical computing and graphics. By the end of the course, students should have a clear understanding of the basic techniques and models of time series analysis and be able to apply them to a variety of time series data.
+This course provides a basic introduction to time series analysis. The focus is on providing students with the tools necessary to analyze, model, and forecast economic and financial data that evolves overtime. Emphasis will be placed on both univariate and multivariate time series models, as well as practical applications using the R software environment for statistical computing and graphics. By the end of the course, students should have a clear understanding of the basic techniques and models of time series analysis and be able to apply them to a variety of time series data.
 
 See full description [here](https://uit.no/utdanning/emner/emne/859434/sok-3021)
 
@@ -32,7 +32,8 @@ Curriculum: Chapters 09, 12, 13 and 14.
 Announcements and messages are posted in Canvas.
 
 ## Home Assignments, obligatory or not?
-You have an assignment portfolio. We will post a lot of small assignments, and some larger ones, in Canvas. Doing these earns various amounts of points to your portfolio. There will be a total of 100 points during the semester. You need 70 points to pass, and be eligible for the final exam.
+The course includes two assignments, and you will present one of them orally in class. Which assignment requires an oral presentation will be decided by a coin toss.
+To be eligible for the final exam, you must complete both assignments and deliver the oral presentation.
 
 
 ## Administrative Questions
