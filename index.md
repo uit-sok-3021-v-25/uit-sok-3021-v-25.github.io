@@ -6,7 +6,7 @@ The lecture and seminar plan contain information about the timing, topics, cours
 
 - [Forelesningsplan](forelesningsplan.html){:target="blank"}
 
-[Timeplan](https://https://timeplan.uit.no/emne_timeplan.php?sem=25v&module[]=SOK-3021-1#week-50){:target="blank"} på timeplan.uit.no
+[Timeplan](https://timeplan.uit.no/emne_timeplan.php?sem=25v&module[]=SOK-3021-1#week-51){:target="blank"} på timeplan.uit.no
 
 ## Course Description
 
