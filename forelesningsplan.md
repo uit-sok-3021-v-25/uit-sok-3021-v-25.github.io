@@ -9,7 +9,7 @@
 |                  |         | The ultimate resource for online books on R is [The big book of R](https://www.bigbookofr.com/){:target='_blank_'}. |
 | 09/01 |     |  Introduction |
 | 14/01 |     |  Chapter 09: Regression with Time-Series Data: Stationary Variables |
-| 16/01 |     | R code for Chapter 9  |
+| 16/01 |     | [R code for Chapter 9](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/chapter_9.R)  |
 | 21/01 |     |   |
 | 23/01 |     |   |
 | 28/01 |     |   |
