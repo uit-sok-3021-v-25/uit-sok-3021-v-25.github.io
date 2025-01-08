@@ -8,7 +8,7 @@
 | **Resources** |            | The 4th edition of our textbook has an [online version with R code](https://bookdown.org/ccolonescu/RPoE4/){:target='_blank_'}. There is an online book called [Introduction to econometrics with R](https://www.econometrics-with-r.org/index.html){:target='_blank_'}. Another online book is [Using R for Introductory Econometrics](http://urfie.net){:target='_blank_'}. Also available for Python and Julia. When you are on the UiT network, you have access to [Applied Econometrics with R](https://link.springer.com/book/10.1007%2F978-0-387-77318-6){:target='_blank_'}. They have a [web-page](https://eeecon.uibk.ac.at/~zeileis/teaching/AER/){:target='_blank_'}. Springer has a whole series of [books in the Use R! section](https://link.springer.com/search?facet-series=%226991%22&facet-content-type=%22Book%22){:target='_blank_'}. |
 |                  |         | The ultimate resource for online books on R is [The big book of R](https://www.bigbookofr.com/){:target='_blank_'}. |
 | 08/01 |     |  Introduction: What is time series? |
-|||[Lecture notes](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/chapter_9.R)|
+|||[Lecture notes pdf](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/SOK_3021_Introduction_Time_series.pdf), [Lecture notes quarto file](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/SOK_3021_Introduction_Time_series.qmd)|
 | 09/01 |     |  Chapter 09: Regression with Time-Series Data: Stationary Variables |
 | 14/01 |     | [R code for Chapter 9](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/chapter_9.R)  |
 | 16/01 |     |   |
