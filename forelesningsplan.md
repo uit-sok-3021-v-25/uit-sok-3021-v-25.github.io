@@ -9,6 +9,7 @@
 |                  |         | The ultimate resource for online books on R is [The big book of R](https://www.bigbookofr.com/){:target='_blank_'}. |
 | 08/01 |     |  Introduction: What is time series? |
 |||[Lecture notes pdf](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/SOK_3021_Introduction_Time_series.pdf), [Lecture notes quarto file](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/SOK_3021_Introduction_Time_series.qmd)|
+|||[lags](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/lags.R)|
 | 09/01 |     |  Chapter 09: Regression with Time-Series Data: Stationary Variables |
 | 14/01 |     | [R code for Chapter 9](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/chapter_9.R)  |
 | 16/01 |     |   |
