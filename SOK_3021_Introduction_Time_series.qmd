@@ -1,0 +1,486 @@
+---
+title: "Introduction to time series"
+description: Time series 
+date: today # other options: now, last-modified
+author:
+  - name: Lecture notes  # Dejene G. 
+#url: 
+affiliation: UiT The Arctic University of Norway 
+affiliation-url: https://uit.no/ansatte/dejene.g.kidane
+title-block-banner: true
+#title-block-banner: "#562457" or  #"#FFDDFF"  or "red"
+format:
+  pdf:
+    theme: flatly
+    code-fold: false
+    toc: false   #automatically generated table of contents
+    toc-depth: 2 #option to specify the number of section levels to include in the table of contents. The default is 3 
+    toc-location: right # left -for left, the defualt is right , body for body 
+    number-sections: False
+    self-contained: true
+    html-math-method: katex
+################
+link-external-icon: true
+link-external-newwindow: true
+link-external-filter: '^(?:http:|https:)\/\/www\.trail lecture\.org\/custom'
+#bibliography: References_Asymmetric_PT.bib
+#link-citations: yes
+#csl: apa-single-spaced.csl
+
+---
+  
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+# Question: What is time series?
+
+- Data observed at regular time intervals (yearly, monthly, weekly, daily, etc.).
+
+- The time index or interval (yearly, monthly, weekly, daily, etc.) are often called frequnecy of the time series
+
+- Widely used in economics, finance, healthcare, climate science, transport,  and engineering.
+
+
+**Examples of time series data;**
+
+**(a) In Economics:** GDP, monthly unemployment rates, inflation rates,stock market prices,sales, prices,  etc. 
+
+- For example, the data below shows the first and last few rows of the GDP growth rate of the U.S., from the first quarter of 1948 to the first quarter of 2016.
+
+```{r,echo=FALSE}
+library(tidyverse)
+#browseURL("http://www.principlesofeconometrics.com/poe5/data/def/usmacro.def")
+load(url("http://www.principlesofeconometrics.com/poe5/data/rdata/usmacro.rdata"))
+
+usmacro %>% select(dateid01,g) %>% head()
+usmacro %>% select(dateid01,g) %>% tail()
+
+```
+
+-  `r dim(usmacro)[1]` quarters (69 years) measured from the first quarter of 1948 to the first quarter of 2016.
+ 
+ 
+ 
+ 
+- When working with time series data, it is essential to understand its structure and characteristics.
+
+- Ploting the data helps to identify patterns, trends, seasonality, etc.
+
+
+```{r,echo=FALSE}
+library(tidyverse)
+usmacro %>% 
+  ggplot(aes(x=dateid01, y=g)) + geom_line() + ylab("g") + xlab("dateid01") +
+  labs(title = "Figure: U.S. Quarterly GDP growth rate 1948:Q1 to 2016:Q1")+theme_bw()
+
+# Alterntively 
+# g <- ts(usmacro$g,start = c(1948,1), frequency = 4)
+# #g
+# plot.ts(g, ylab = "GDP growth rates (g)", xlab = "Time")
+
+
+```
+
+
+
+**(b) Epidemiology:** the number of influenza cases observed over sometime period, the number of COVID-19 cases and deaths, etc. 
+
+
+- For instance, the following figures are the time series plot of COVID-19 related death rate in Norway and USA
+
+
+```{r,echo=FALSE}
+library(readr)
+
+# URL to the COVID data
+#url <- "https://covid.ourworldindata.org/data/owid-covid-data.csv"
+
+# Read the data directly into R
+#covid_data <- read_csv(url)
+
+#saveRDS(covid_data, file = "covid_data.RDS")
+covid_data <- readRDS("covid_data.RDS")
+
+# covid_data %>% select(location, date,total_cases,total_deaths) %>% 
+#   filter(location=="Norway" | location=="United States")%>% View()
+
+df <- covid_data %>% select(location, date,total_cases,total_deaths) %>% 
+  filter(location=="Norway" | location=="United States")
+
+
+df %>% 
+  filter(location=="Norway" ) %>% 
+  ggplot(aes(x=date,y=total_deaths))+geom_line()+
+  ggtitle("Total COVID-19 death in NOrway") +  # Title
+  xlab(" ") +  # X-axis label
+  ylab("Total deaths in Norway") + # Y-axis label
+  theme_bw()
+
+
+df %>% 
+  filter(location=="United States" ) %>% 
+  ggplot(aes(x=date,y=total_deaths))+geom_line()+
+ggtitle("Total deaths in USA due to COVID-19") + 
+  xlab(" ") +  
+  ylab("Total deaths") + 
+theme_bw()
+
+```
+
+**(c) Social sciences:** population series, such as birthrates, school enrollments, etc. 
+
+ - For example, the following is the time series plot of the monthly number of births in New York City (thousands), 1946–1959.
+ 
+```{r,echo=FALSE}
+births <- scan("http://robjhyndman.com/tsdldata/data/nybirths.dat")
+
+births <- ts(births, frequency = 12, start = c(1946, 1))
+plot.ts(births)
+```
+ 
+ 
+
+**(d) Transport:** Number of traffic accidents per day, month, or year, number of passengers traveling through airports each month or year, etc 
+
+
+- For example the following plot is the time series plot of the weekly economy class passengers on ansett airlines between Australia’s two largest cities: Melbourne-Sydney  
+ 
+```{r,echo=FALSE}
+plot.ts(fpp::melsyd[,"Economy.Class"],xlab="Year", ylab="Thousands")
+
+```
+
+
+**(e). Global warming,** CO2 concentration in the atmosphere over time, etc.
+
+
+
+## Key features of time series data
+
+- ordered observations.
+
+- dependecy on time,
+  
+  - temporal dependence of a time series can be considered the main characteristic of timeseries data, which means that an observation collected at a particular time is related or influenced by the previously collected observation.
+  
+  - For instance, Norway's current monthly unemployment rate is related to the rate from the previous month.
+
+
+# What is Time Series Analysis/ Time Series Econometrics?
+
+- Time series analysis (or time series econometrics) is the study of time series data.
+
+
+# Why study Time Series Econometrics?
+
+- Understand patterns over time (trends, seasonality, cycles).
+
+- Make forecasts and predictions.
+
+- Model relationships in dynamic systems.
+
+- Applications in economics, finance, health, climate science, etc.
+
+
+
+
+# Key components of time series data 
+
+
+## Trend. 
+
+- it represent the average change (change in the mean) in the time series over time.
+
+- it tells the overall direction of the data such as increasing, decreasing, or constant.
+
+- When a time series represents a direction of growth, shrink and stability directions or pattern in the long term, we can consider this as the trend component of time series.
+
+
+**Examples of trends are:**
+
+- $T_t = \beta_0$ (constant over time , we usually refer to this case as "no trend"),
+
+
+- $T_t = \beta_0+\beta_1 t$ (linear increase or decrease over time), 
+
+-  $T_t = \beta_0+\beta_1 t+\beta_2 t^2$ (quadratic over time), and so on. 
+
+
+## Seasonality 
+
+- represents regular periodic fluctuations in the time series.
+
+- regular patterns at fixed intervals (e.g., monthly sales spikes).
+
+- reapeating patern of the data over a set period of time 
+
+
+## Irregular/Random variations 
+
+- unpredictable, short-term fluctuations.
+
+- is the residual or error and represents the remaining unexplained variation in the data.
+
+- in other words, it is a random or stochastic component.
+
+
+# Time Series decomposition 
+
+
+- A time series $Y_t$ can generally be expressed as a sum of trend, seasonality and random variation 
+
+$$
+Y_t = T_t+S_t+\epsilon_t
+$$
+
+where $T_t$ is the trend, $S_t$ represent seasonality,and $\epsilon_t$ represents the irregular/random noise 
+
+
+
+
+### Some examples
+
+
+**Example 1.** The figure below illustrates time-series decomposition of the monthly number of births in New York City (thousands), 1946–1959.
+
+```{r,echo=FALSE}
+library(forecast)
+ births <- scan("http://robjhyndman.com/tsdldata/data/nybirths.dat")
+births <- ts(births, frequency = 12, start = c(1946, 1))
+ggplot2::autoplot(decompose(births))+theme_bw()
+```
+
+
+
+**Example 2:** The time seires plot below shows the quarterly beer production in Australia
+
+```{r,echo=FALSE}
+library(fpp2)
+beer2 <- window(ausbeer, start=1992)
+ggplot2::autoplot(beer2) + xlab("Year") + ylab("Megalitres")+theme_bw()
+```
+
+
+The time series decomposition of the quarterly beer production in Australia: 
+```{r,echo=FALSE}
+ggplot2::autoplot(decompose(beer2))+theme_bw()
+```
+
+
+We want to forecast the value of future beer production. We can model this data using a regression model with a linear trend and quarterly dummy variables,
+
+$$
+y_t = \beta_0 +\beta_1 t + \beta d_{2,t}+ \beta d_{3,t}+ \beta d_{4,t}+e_t
+$$
+where $d_{i,t}=1$ if $t$ is quarter $i$ and $0$ otherwise. The first quarter variable has been omitted, so the coefficients associated with the other quarters are measures of the difference between those quarters and the first quarter.
+
+
+```{r,echo=FALSE}
+fit.beer <- tslm(beer2 ~ trend + season)
+summary(fit.beer)
+```
+
+
+- Note that trend and season are not objects in the R workspace; they are created automatically by  **tslm()**  when specified in this way. Otherwise, can be created mannually.  
+
+- There is an average downward trend of -0.34 megalitres per quarter.
+
+- On average, the second quarter has production of 34.7 megalitres lower than the first quarter, the third quarter has production of 17.8 megalitres lower than the first quarter, and the fourth quarter has production of 72.8 megalitres higher than the first quarter.
+
+
+
+
+
+
+# Stationary vs non-stationary time series data
+
+**Defination:**
+- A Stationary time series data has constant means, variance and autocovariance overtime. 
+
+- Non-stationary timeseries data has means and variances that change over time 
+
+- The first figure below is non-stationary while the second one is stationary 
+
+
+```{r,echo=FALSE}
+#browseURL("http://www.principlesofeconometrics.com/poe5/data/def/usdata5.def")
+load(url("http://www.principlesofeconometrics.com/poe5/data/rdata/usdata5.rdata"))
+
+infn <- ts(usdata5$infn,start = c(1948,1), frequency = 4)
+
+plot.ts(infn, ylab = "inflation, percent (monthly)", xlab = "Time")
+
+
+```
+
+
+```{r,echo=FALSE}
+plot.ts(diff(infn), ylab = "Chnage in inflation (monthly)", xlab = "Time")
+
+
+```
+
+
+
+# Time Series Models 
+
+Suppose we have a time series data, $Y_t$.  
+
+**Autoregressive(AR) models:** $Y_t = \phi_1 Y_{t-1}+\epsilon_t$
+
+
+**Moving Average(MA) models:** $Y_t = \phi_1 \epsilon_{t}+\epsilon_{t-1}$
+
+
+**ARMA models:** combine AR and MA.
+
+**ARIMA models:** includes differencing to address non-stationarity.
+
+
+# Advanced topics 
+
+- Vector Autoregression (VAR) (chapter 13)
+
+- Cointegration and Error Correction Models (ECM) (chapter 12 and 13)
+
+- Volatility models (e.g.,ARCH,  GARCH) (chapter 14)
+
+
+
+# Summary and Resources 
+
+**Key Take aways:**
+
+- Time series data is time-ordered and exhibits unique challenges.
+
+- Understanding the characteristics of a time series—such as trends, seasonality, stationarity, and non-stationarity—is essential for effective analysis. 
+
+- the characterstics of a time series influence the choice of models and methods, ensuring accurate interpretation and forecasting.
+
+**Resources:**
+
+- **Textbook:** Principles of Econometrics 5th Edition (POE5), Wiley - 2018.By R. Carter Hill, William E. Griffiths and Guay C. Lim. 
+
+- Some useful links: 
+  
+  - https://vlyubchich.github.io/tsar/l02_tsintro.html 
+  
+  - https://otexts.com/fpp2/regression-intro.html 
+
+  - https://otexts.com/fpp2/useful-predictors.html 
+
+  - https://otexts.com/fpp2/expsmooth.html
+
+
+
+
+# Lags of time series data and regression 
+
+- **Lag:** is when you're looking at past data points to understand the current or future situation. 
+
+- In simple terms, a "lag" is like looking back in time. 
+
+- For example, if you’re studying sales this month, you might look at sales from last month to predict current trends. 
+
+- So, the "lag" is the previous month’s sales data compared to this month. 
+
+```{r,echo=FALSE}
+rm(list=ls())
+library(mosaic)
+
+#browseURL("http://www.principlesofeconometrics.com/poe5/data/def/usmacro.def")
+load(url("http://www.principlesofeconometrics.com/poe5/data/rdata/usmacro.rdata"))
+
+str(usmacro)
+
+head(usmacro)
+
+
+ggplot(usmacro, aes(x=dateid01, y=g)) + geom_line() + ylab("Growth Rate") + xlab("Year") +
+  labs(title = "Figure 1: U.S. Quarterly GDP growth rate 1948:Q1 to 2016:Q1")
+
+usmacro %>% ggplot(aes(x=dateid01, y=u)) + geom_line() + ylab("Unemployment Rate") + xlab("Year") +
+  labs(title = "Figure 2: U.S. Quarterly unemployment rate 1948:Q1 to 2016:Q1")
+```
+
+
+```{r,echo=FALSE}
+usmacro %>% select(dateid01,u) %>% head()
+
+usmacro %>% select(dateid01,u) %>%  
+  mutate(u1 = dplyr::lag(u,1), # first lag of u
+         u2 = dplyr::lag(u,2)) %>% head() # second lag u
+ 
+
+
+```
+
+
+
+ Drop rows with **NA's** values from the data frame
+ 
+```{r,echo=FALSE}
+# regress u against ints two lags 
+df <- usmacro %>% select(dateid01,u) %>%  
+  mutate(u1 = dplyr::lag(u,1),  
+         u2 = dplyr::lag(u,2)) %>%  
+  na.omit()
+
+
+head(df)
+
+fit <- lm(u~ u1+u2, data = df)
+summary(fit)
+
+```
+
+
+
+Alternatively, more eaily using **dynlm()** function instead of **lm()** function: 
+
+```{r,echo=FALSE}
+library(dynlm)
+fit2 <- dynlm(u ~ L(u,1)+L(u,2), data = ts(usmacro)) #note ts()  in the data
+summary(fit2)
+```
+
+
+```{r,echo=FALSE}
+# the advantage of using dynlm package is that 
+fit3 <- dynlm(u ~ L(u,1:2)+L(g,0:1), data = ts(usmacro))
+summary(fit3)
+```
+
+
+
+```{r,echo=FALSE}
+
+#' Note that in `base R`lag(x,-1) is the lag operator, lag(x) is a lead (t+1) operator.
+
+# Lead: This is when you're looking at future data points to predict what will happen. It's like trying to look forward in time. For example, if you’re studying how current air traffic might affect passenger numbers next month, the "lead" would be the future data (next month’s data) based on the current month's figures.
+# 
+# So, in short:
+# 
+# Lag = looking back in time (past data)
+# Lead = looking forward in time (future data)
+
+# Both are used to understand how things that happened earlier (lag) or might happen later (lead) impact what is happening right now.
+
+t=ts(1:5)
+t
+cbind(t,stats::lag(t,-1))
+cbind(t,stats::lag(t))
+
+df <- cbind(t,stats::lag(t),stats::lag(t,-1))
+df
+ts.intersect(df)
+
+ts.intersect(t,stats::lag(t),stats::lag(t,-1))
+```
+
+# Chapter 09 
+
+- next we start chapter 09 
+
+
