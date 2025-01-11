@@ -10,8 +10,10 @@
 | 08/01 |     |  Introduction: What is time series? |
 |||[Lecture notes pdf](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/SOK_3021_Introduction_Time_series.pdf), [Lecture notes quarto file](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/SOK_3021_Introduction_Time_series.qmd)|
 |||[lags](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/lags.R)|
+|||[R codes from class](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/Lag.time.series.R)|
 | 09/01 |     |  Chapter 09: Regression with Time-Series Data: Stationary Variables |
-| 14/01 |     | [R code for Chapter 9](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/chapter_9.R)  |
+|  |     | [R code for Chapter 9](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/chapter_9.R)  |
+|14/01|||
 | 16/01 |     |   |
 | 21/01 |     |   |
 | 23/01 |     |   |
