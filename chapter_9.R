@@ -7,7 +7,7 @@ library(mosaic)
 
 #' Example 9.1
 
-browseURL("http://www.principlesofeconometrics.com/poe5/data/def/usmacro.def")
+#browseURL("http://www.principlesofeconometrics.com/poe5/data/def/usmacro.def")
 load(url("http://www.principlesofeconometrics.com/poe5/data/rdata/usmacro.rdata"))
 
 str(usmacro)
@@ -100,22 +100,22 @@ usmacro.lag <- cbind( u = usmacro[,"u"],
 head(usmacro.lag)
 
 fit2 <- Arima(usmacro.lag[,"u"], order=c(2,0,0), xreg = usmacro.lag[,"gLag1"]) %>% tidy()
-fit2 
 
 # Calculate the intercept from the mean and AR() coefficients
 fit2$estimate[3]*(1-fit2$estimate[1]-fit2$estimate[2])
 
+# update the model 
+fit2 <- Arima(usmacro.lag[,"u"], order=c(2,0,0), xreg = usmacro.lag[,"gLag1"]) 
+fit2 
 
+# Forecasting 
+fc2 <- forecast(fit2, h=3,xreg=cbind(xreg = c(usmacro[,"g"][273],0.869,1.069))) 
 
-#*********************************
-fc2 <- forecast(fit2, h=3,xreg=cbind(gLag1 = c(usmacro[,"g"][273],0.869,1.069))) 
-
+#dev.off()
 autoplot(fc2) + ylab("Unemployment") +
   ggtitle("Forecast unemployment with future GDP growth")
 
 fc2
-#***********************************************
-
 
 
 #' Another package, forecasting using ARDL(1,2) model 
@@ -611,7 +611,6 @@ b4=coef(model)[2]*b3+b2*coef(model)[3]
 b=c(b0,b1,b2,b3,b4)
 b
 plot(0:4,b, type="l", main="Figure 9.12")
-
 
 
 
