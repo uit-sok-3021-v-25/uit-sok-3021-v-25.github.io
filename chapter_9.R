@@ -27,7 +27,8 @@ ggplot(usmacro, aes(x=dateid01, y=g)) + geom_line() + ylab("Growth Rate") + xlab
 
 #' The default base r function:
 acf(usmacro$u) 
-#' Note that the autocorrelation for lag 0 is always 1, so there is no need to plot it.
+#' Note that the autocorrelation for lag 0 is always 1,
+#' so there is no need to plot it.
 #' We can print the autocorrelation coefficients.
 acf(usmacro$u)$acf
 
@@ -60,7 +61,7 @@ library(broom)
 fit <- usmacro %>% select(u) %>% Arima(., order=c(2,0,0)) %>% tidy() 
 fit
 
-?arima
+#?arima
 
 #' The problem with this method of estimation AR model is that, 
 #' in the results, what is reported as intercept is not the intercept,
@@ -83,9 +84,10 @@ fit$estimate[3]*(1-fit$estimate[1]-fit$estimate[2])
 
 # ARIMA forecasts
 usmacro %>% select(u) %>% Arima(., order=c(2,0,0)) %>%  forecast(h=3)
+
 # Plot the forecast value 
 usmacro %>% select(u) %>% Arima(., order=c(2,0,0)) %>%  forecast(h=20) %>% autoplot()
-
+#dev.off()
 ?autoplot
 
 
@@ -111,11 +113,13 @@ fit2
 # Forecasting 
 fc2 <- forecast(fit2, h=3,xreg=cbind(xreg = c(usmacro[,"g"][273],0.869,1.069))) 
 
+fc2
+
 #dev.off()
 autoplot(fc2) + ylab("Unemployment") +
   ggtitle("Forecast unemployment with future GDP growth")
 
-fc2
+
 
 
 #' Another package, forecasting using ARDL(1,2) model 
@@ -124,32 +128,28 @@ rm(list=ls())
 load(url("http://www.principlesofeconometrics.com/poe5/data/rdata/usmacro.rdata"))
 
 #install.packages("dLagM")
-library(dLagM)   
+library(dLagM)  
+#?ardlDlm
 
-?ardlDlm
-
-rem.p = c(0)
-rem.q = c(1)
+rem.p = c(0)  # p is the lag of x
+rem.q = c(1)  # q is the lag of y 
 remove = list(p = rem.p , q = rem.q)   
 
 model.ardl = ardlDlm(x = usmacro[,"g"],
                      y = usmacro[,"u"], p = 1 , q = 2, remove=remove) 
 
+summary(model.ardl)
 #'The argument remove=list() is used to specify which lags of 
 #' the series will be removed from the full model,
 #' see help("ardlDlm") for more details.
 #' Note that, here, the role of p and q are changed in this package 
 
-#compacted:..--> 
-model.ardl = ardlDlm(x = usmacro$g, y = usmacro$u, remove=list(p = 1 , q = 2))
 
-summary(model.ardl)
-
-?ardlDlm
 
 # Table 9.4, page 435 
 
-forecast(model = model.ardl, x = c(usmacro[,"g"][273],0.869,1.069), h = 3, interval = TRUE) 
+dLagM::forecast(model = model.ardl, x = c(usmacro[,"g"][273],0.869,1.069), h = 3, interval = TRUE) 
+
 
 
 #' Another package dynlm
@@ -188,6 +188,7 @@ auto.arima(usmacro[,"u"], xreg = usmacro[,"g"], ic = "aic")
 auto.arima(usmacro[,"u"], xreg = usmacro[,"g"], ic = "bic")
 
 #
+library(dynlm)
 BIC(dynlm(u~L(u,1)+L(g,0:8),data=ts(usmacro)))
 
 
@@ -208,6 +209,52 @@ BICs <- sapply(order, function(x)
   BIC(dynlm(u~ L(u, x) + L(g, 1:x),data = ts(usmacro,frequency = 4,start=c(1948,1))))) 
 
 BICs   
+
+################################################
+# Estimate ARDL and select optimal lag of the model 
+
+library(dynlm)
+
+# Initialize variables
+p_max <- 8  # Maximum lag for dependent variable
+q_max <- 8  # Maximum lag for independent variable
+
+
+# Initialize storage for model summaries
+aic_values <- matrix(NA, nrow = p_max, ncol = q_max)
+bic_values <- matrix(NA, nrow = p_max, ncol = q_max)
+
+
+# Loop through possible lag lengths
+for (p in 1:p_max) {
+  for (q in 1:q_max) {
+    # Define the model formula
+    model_formula <- as.formula(paste(
+      "u ~", 
+      paste(paste0("L(u, ", 1:p, ")"), collapse = " + "), "+",
+      paste(paste0("L(g, ", 0:q, ")"), collapse = " + ")
+    ))
+    
+    # Fit the model
+    model <- dynlm(model_formula, data = ts(usmacro))
+    
+    # Calculate AIC and BIC
+    aic_values[p, q] <- AIC(model)  # Correctly using AIC
+    bic_values[p, q] <- BIC(model)  # Correctly using BIC
+  }
+}
+
+# The optimal lag lengths based on AIC
+optimal_aic_index <- which(aic_values == min(aic_values, na.rm = TRUE), arr.ind = TRUE)
+optimal_bic_index <- which(bic_values == min(bic_values, na.rm = TRUE), arr.ind = TRUE)
+
+# optimal lag, based on AIC
+cat("Optimal lag length based on AIC: p =", optimal_aic_index[1], ", q =", optimal_aic_index[2], "\n")
+
+# optimal lag, based on BIC
+cat("Optimal lag length based on BIC: p =", optimal_bic_index[1], ", q =", optimal_bic_index[2], "\n")
+
+###########################################
 
 # more detail look at the link 
 #https://www.econometrics-with-r.org/14-6-llsuic.html
@@ -359,7 +406,7 @@ cbind(t,stats::lag(t))
 x=cbind(U,stats::lag(U,-1),diff(U),G,stats::lag(G,-1),stats::lag(G,-2),stats::lag(G,-3),stats::lag(G,-4))
 head(x,10)
 tail(x,10)
-View(x)
+#View(x)
 
 
 #' or:
