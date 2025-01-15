@@ -3,7 +3,9 @@
 #' ==========================
 
 rm(list=ls())
-library(mosaic)
+library(forecast)
+library(broom)
+library(tidyverse)
 
 #' Example 9.1
 
@@ -21,29 +23,24 @@ ggplot(usmacro, aes(x=dateid01, y=g)) + geom_line() + ylab("Growth Rate") + xlab
   labs(title = "Figure 9.2b: U.S. Quarterly GDP growth rate 1948:Q1 to 2016:Q1")
 
 #' Example 9.2
-#' Autocorrelation
 #' The autocorrelation function (acf) is a set of correlation coefficients
 #' between a time series and various lags of itself.
 
 #' The default base r function:
 acf(usmacro$u) 
-#' Note that the autocorrelation for lag 0 is always 1,
-#' so there is no need to plot it.
+#' Note that the autocorrelation for lag 0 is always 1,so there is no need to plot it.
+
 #' We can print the autocorrelation coefficients.
 acf(usmacro$u)$acf
 
-#' However, the forecast package gives a nicer ggplot, with the ar(0)=1 removed
-library(forecast)
-#' library(tidyverse)
 
+#' The forecast package gives a nicer ggplot, with the ar(0)=1 removed
 usmacro %>% select(u) %>% ggAcf() +
   labs(title = "Figure 9.4: Correlogram for U.S. Quarterly unemployment rate")
 
 usmacro %>% select(g) %>% ggAcf() +
   labs(title = "Figure 9.5: Correlogram for growth rate in U.S. GDP")
 
-
-# --------------------------------------------- 
 #' Figure 9.6
 #' Some time series plots on random variables.
 par(mfrow=c(3,1))
@@ -53,47 +50,21 @@ plot(cumsum(rnorm(300, mean=0.2)), type="l", main="Figure 9.6 (c) Time series of
 par(mfrow=c(1,1))
 
 
-# Estimation  of AR/ARDL model, using ML 
+# Estimation and forecasting using AR model  
+#####################################################
 
 #Example 9.6 Forecasting an unemployment using AR(2) model 
-
-library(broom)
-fit <- usmacro %>% select(u) %>% Arima(., order=c(2,0,0)) %>% tidy() 
-fit
-
-#?arima
-
-#' The problem with this method of estimation AR model is that, 
-#' in the results, what is reported as intercept is not the intercept,
-#' rather the mean of the time series. 
-
-#mean(usmacro$u)
-
-# we can calculate the intercept from the mean and AR() coefficients
-
-fit$estimate[3]*(1-fit$estimate[1]-fit$estimate[2])
-
-#just try this...
-
-#U_t=intercept+theta_1*U_(t-1)+theta_2*U_(t-2)+error
-#solve for the intercept
-#intercept=U_t-theta_1*U_(t-1)-theta_2*U_(t-2)+error
-#take the mean of the variables and the error 
-#intercept=mean(U_t)*[1-theta_1-theta_2]
-
+usmacro %>% select(u) %>% Arima(., order=c(2,0,0)) %>% tidy() 
 
 # ARIMA forecasts
-usmacro %>% select(u) %>% Arima(., order=c(2,0,0)) %>%  forecast(h=3)
+usmacro %>% select(u) %>% Arima(., order=c(2,0,0)) %>%forecast(h=3)
 
 # Plot the forecast value 
 usmacro %>% select(u) %>% Arima(., order=c(2,0,0)) %>%  forecast(h=20) %>% autoplot()
-#dev.off()
-?autoplot
 
 
 # Example 9.7 Forecasting unemployment with an ARDL(2,1) model
-
-usmacro=ts(usmacro)
+###############################################################
 
 usmacro.lag <- cbind( u = usmacro[,"u"],
                       g = usmacro[,"g"],
@@ -101,29 +72,22 @@ usmacro.lag <- cbind( u = usmacro[,"u"],
 
 head(usmacro.lag)
 
-fit2 <- Arima(usmacro.lag[,"u"], order=c(2,0,0), xreg = usmacro.lag[,"gLag1"]) %>% tidy()
+Arima(usmacro.lag[,"u"], order=c(2,0,0), xreg = usmacro.lag[,"gLag1"]) %>% tidy()
 
-# Calculate the intercept from the mean and AR() coefficients
-fit2$estimate[3]*(1-fit2$estimate[1]-fit2$estimate[2])
-
-# update the model 
+# save & remove tidy() at the end 
 fit2 <- Arima(usmacro.lag[,"u"], order=c(2,0,0), xreg = usmacro.lag[,"gLag1"]) 
-fit2 
 
 # Forecasting 
 fc2 <- forecast(fit2, h=3,xreg=cbind(xreg = c(usmacro[,"g"][273],0.869,1.069))) 
 
 fc2
 
-#dev.off()
+# plot the forecast value and interval 
 autoplot(fc2) + ylab("Unemployment") +
   ggtitle("Forecast unemployment with future GDP growth")
 
-
-
-
-#' Another package, forecasting using ARDL(1,2) model 
-
+#' Another package, forecasting using ARDL(2,1) model 
+##################################################################
 rm(list=ls())
 load(url("http://www.principlesofeconometrics.com/poe5/data/rdata/usmacro.rdata"))
 
@@ -132,31 +96,48 @@ library(dLagM)
 #?ardlDlm
 
 rem.p = c(0)  # p is the lag of x
-rem.q = c(1)  # q is the lag of y 
+rem.q = c(0)  # q is the lag of y 
+
+#' Note that, here, the role of p and q are changed in this package 
+
 remove = list(p = rem.p , q = rem.q)   
 
 model.ardl = ardlDlm(x = usmacro[,"g"],
                      y = usmacro[,"u"], p = 1 , q = 2, remove=remove) 
 
 summary(model.ardl)
-#'The argument remove=list() is used to specify which lags of 
-#' the series will be removed from the full model,
-#' see help("ardlDlm") for more details.
-#' Note that, here, the role of p and q are changed in this package 
-
 
 
 # Table 9.4, page 435 
+x = c(usmacro[,"g"][273],0.869,1.069) # points  where forecast of the y-variable to be made 
 
-dLagM::forecast(model = model.ardl, x = c(usmacro[,"g"][273],0.869,1.069), h = 3, interval = TRUE) 
+fc <- dLagM::forecast(model = model.ardl,x= x, h = length(x), interval = TRUE) 
+fc
+
+# Create a data frame for forecast values and intervals
+forecast_data <- data.frame(
+  Time = (length(usmacro$u) + 1):(length(usmacro$u) + length(x)),  # Next 3 periods
+  Forecast = fc$forecasts[, 2],  # Forecast values
+  Lower_Bound = fc$forecasts[, 1],  # Lower bound of the forecast
+  Upper_Bound = fc$forecasts[, 3]  # Upper bound of the forecast
+)
+
+# Plot actual data and forecast with intervals
+library(ggplot2)
+ggplot() +
+  # Plot actual data
+  geom_line(data = data.frame(Time = 1:length(usmacro$u), Value = usmacro$u), aes(x = Time, y = Value), color = "blue") +
+  # Plot forecasted data
+  geom_line(data = forecast_data, aes(x = Time, y = Forecast), color = "red") +
+  # Plot the forecast interval
+  geom_ribbon(data = forecast_data, aes(x = Time, ymin = Lower_Bound, ymax = Upper_Bound), fill = "gray", alpha = 0.4) +
+  labs(x = "Time", y = "Value", title = "Actual vs Forecast with 95% Confidence Interval") +
+  theme_minimal()
 
 
-
-#' Another package dynlm
-#' 
-#  Estimate ARDL(2,1) Model 
+#  Estimate ARDL(2,1) Model using the package dynlm
+##########################################################
 library(dynlm)
-#
 fit <- dynlm(u ~ L(u,1)+L(u,2)+L(g,1),data=ts(usmacro)) 
 summary(fit)
 
@@ -164,15 +145,10 @@ summary(fit)
 fit2 <- dynlm(u ~ L(u,1:2)+L(g,1),data=ts(usmacro)) 
 summary(fit2)
 
-#'  
-fit2 <- dynlm(u ~ L(u,1:2)+L(g,1:2),data=ts(usmacro)) 
-summary(fit2)
-
-
-
 
 
 #' Lag selection criteria 
+##########################################
 
 # Example 9.8
 
