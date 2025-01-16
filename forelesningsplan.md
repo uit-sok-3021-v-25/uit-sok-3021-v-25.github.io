@@ -13,8 +13,9 @@
 |||[R codes from class](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/Lag.time.series.R)|
 | 09/01 |     |  Chapter 09: Regression with Time-Series Data: Stationary Variables |
 |  |     | [R code for Chapter 9](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/chapter_9.R)  |
-|14/01|||
-| 16/01 |     |   |
+|14/01||continue with chap 09|
+|16/01||continue with chap 09|
+|  |     | [The pdf from the class](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/Forecasting.pdf)  |
 | 21/01 |     |   |
 | 23/01 |     |   |
 | 28/01 |     |   |
