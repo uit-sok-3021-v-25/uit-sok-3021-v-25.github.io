@@ -18,6 +18,7 @@
 |  |     | [The pdf from the class](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/Forecasting.pdf)  |
 | 21/01 |     |  Chapter 12: Regression with Time-Series Data: Non-Stationary Variables |
 |  |     |[R codes for chapter 12](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/chapter_12.R)   |
+|||[Exercise](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/SOK_3021_Interpretation-of-FDL-model.pdf), and if you wantthe [Quarto file](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/SOK_3021_Interpretation%20of%20FDL%20model.qmd)|
 | 23/01 |     |  continue with chap 12 |
 | 28/01 |     |   |
 | 30/01 |     |   |
