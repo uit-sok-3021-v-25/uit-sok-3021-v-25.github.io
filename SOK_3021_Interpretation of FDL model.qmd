@@ -3,7 +3,7 @@ title: "Exercsie"
 description: Time series 
 date: today # other options: now, last-modified
 author:
-  - name: #Lecture notes  # Dejene G. 
+  - name:
 #url: 
 affiliation: UiT The Arctic University of Norway 
 affiliation-url: https://uit.no/ansatte/dejene.g.kidane
@@ -23,7 +23,7 @@ format:
 link-external-icon: true
 link-external-newwindow: true
 link-external-filter: '^(?:http:|https:)\/\/www\.trail lecture\.org\/custom'
-#bibliography: References_Asymmetric_PT.bib
+#bibliography: 
 #link-citations: yes
 #csl: apa-single-spaced.csl
 
