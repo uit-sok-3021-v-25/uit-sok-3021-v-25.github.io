@@ -1,0 +1,74 @@
+---
+title: "Exercsie"
+description: Time series 
+date: today # other options: now, last-modified
+author:
+  - name: #Lecture notes  # Dejene G. 
+#url: 
+affiliation: UiT The Arctic University of Norway 
+affiliation-url: https://uit.no/ansatte/dejene.g.kidane
+title-block-banner: true
+#title-block-banner: "#562457" or  #"#FFDDFF"  or "red"
+format:
+  pdf:
+    theme: flatly
+    code-fold: false
+    toc: false   #automatically generated table of contents
+    toc-depth: 2 #option to specify the number of section levels to include in the table of contents. The default is 3 
+    toc-location: right # left -for left, the defualt is right , body for body 
+    number-sections: False
+    self-contained: true
+    html-math-method: katex
+################
+link-external-icon: true
+link-external-newwindow: true
+link-external-filter: '^(?:http:|https:)\/\/www\.trail lecture\.org\/custom'
+#bibliography: References_Asymmetric_PT.bib
+#link-citations: yes
+#csl: apa-single-spaced.csl
+
+---
+  
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+# Question 1:
+
+The following R code loads the **okun5_aus**. 
+```{r}
+library(tidyverse)
+library(dynlm)
+#browseURL("http://www.principlesofeconometrics.com/poe5/data/def/okun5_aus.def")
+load(url("http://www.principlesofeconometrics.com/poe5/data/rdata/okun5_aus.rdata"))
+
+ okun5_aus %>% head()
+
+
+```
+ (a). Transfor the variables $U$ and $G$ into time series object. 
+ 
+ (b). Estimate the following distributed lag model: 
+ 
+ $$
+ \Delta U_t = \alpha + \beta_0 G_t +\beta_1 G_{t-1}+\beta_2 G_{t-2}+\beta_3 G_{t-3}+\beta_4 G_{t-4} +\epsilon_t
+ $$
+ 
+(c). Interpret the coefficients of the estimated model above. Specifically, explain what the estimates for lag lengths 1, 2, 3, and 4 indicate about the relationship between the variables over time.
+
+
+(d). In the estimated model above, what are the impact multiplier, the 1-period, 2-period, and 3-period interim multipliers, and the total multiplier?
+
+(d). If given the general model below, how would you determine the optimal lag length? 
+$$
+ \Delta U_t = \alpha + \beta_0 G_t +\beta_1 G_{t-1}+\beta_2 G_{t-2}....+\beta_p G_{t-q} +\epsilon_t
+ $$
+
+(e).Estimate the model using the optimal lag length obtained, and check for serial correlation and homoskedasticity in the estimated model. 
+
+
+# Question 2:
+
+Refer to Chapter 12 of the textbook (POE5), complete questions 12.13 (a) through (e) on pages 592-593.
+
+
