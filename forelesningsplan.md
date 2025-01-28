@@ -21,7 +21,8 @@
 |||| 
 |||[Exercise](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/SOK_3021_Interpretation-of-FDL-model.pdf), and if you wantthe [Quarto file](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/SOK_3021_Interpretation%20of%20FDL%20model.qmd)|
 | 23/01 |     |  continue with chap 12 |
-| 28/01 |     |   |
+|28/01 ||Do exercise: Q12.7, 12.8, 12.10 and 12.14 (p. 592 -593, POE%)|
+| |     | [R codes from the class](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/Exercise_3_solution.R)  |
 | 30/01 |     |   |
 | 04/02 |     |   |
 | 11/02 |     |  |
