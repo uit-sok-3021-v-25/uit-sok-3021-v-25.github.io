@@ -24,6 +24,7 @@
 |28/01 ||Do exercise: Q12.7, 12.8, 12.10 and 12.14 (p. 592 -593, POE%)|
 | |     | [R codes from the class](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/Exercise_3_solution.R)  |
 | 30/01 |     | continue with chap 12  |
+|||[R codes from the class](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/Cointegration.R)|
 | 04/02 |     | [R codes for chap 13](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/Chapter_13.R)  |
 | 11/02 |     | Do exercise: Q 13.5, 13.6, and 13.9 (p. 592 -593, POE%) |
 | 13/02 |     | [R codes for for chap 14](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/Chapter_14.R)  |
