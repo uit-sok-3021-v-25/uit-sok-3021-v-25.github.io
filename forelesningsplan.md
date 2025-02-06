@@ -32,6 +32,7 @@
 | 13/02 |     | [R codes for for chap 14](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/Chapter_14.R)  |
 | 18/02 |     |   |
 | 20/02 |     |   |
+|Deadline| 24/02, 16:00|[Assignment](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/SOK-3021_Assignment.pdf)|
 | 25/02 |     |   |
 | 27/02 |     |   |
 | |     |   |
