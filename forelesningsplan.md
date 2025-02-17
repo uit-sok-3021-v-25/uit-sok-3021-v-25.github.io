@@ -30,7 +30,7 @@
 |  |     | Do exercise: Q 13.5, 13.6, and 13.9 (p. 592 -593, POE%) |
 | 11/02 |     | [R code from class](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/VAR_model.R) |
 | 13/02 |     | [R codes for for chap 14](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/Chapter_14.R)  |
-| 18/02 |     |   |
+| 18/02 |     | Do exercise: Q14.8, 14.10, 14.11 and 14.14 (p. 627 -631, POE%)  |
 | 20/02 |     |   |
 |Deadline| 24/02, 16:00|[Assignment](https://github.com/uit-sok-3021-v-25/uit-sok-3021-v-25.github.io/blob/main/SOK-3021_Assignment.pdf)|
 | 25/02 |     |   |
